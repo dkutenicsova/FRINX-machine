@@ -103,7 +103,7 @@ class TestMount(unittest.TestCase):
             mock.return_value = MockResponse(bytes(json.dumps({}), encoding='utf-8'), 201)
             request = netconf_worker.execute_mount_netconf(
                 {"inputData": {"device_id": "xr6", "host": "192.168.1.1", "port": "830", "keepalive-delay": "1000",
-                               "tcp-only": "false", "username": "name", "password": "password"}})
+                               "tcp-only": "false", "username": "name", "password": "password", "enabled-notifications": false}})
             self.assertEqual(request["status"], "COMPLETED")
             self.assertEqual(request["output"]["url"], odl_url_base
                              + "/data/network-topology:network-topology/topology=topology-netconf/node=xr6")

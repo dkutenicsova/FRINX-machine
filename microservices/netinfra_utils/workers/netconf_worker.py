@@ -69,6 +69,9 @@ def execute_mount_netconf(task):
     if 'dry-run-journal-size' in task['inputData'] and task['inputData']['dry-run-journal-size'] is not None:
         mount_body["node"]["netconf-node-topology:dry-run-journal-size"] = task['inputData']['dry-run-journal-size']
 
+    if 'enabled-notifications' in task['inputData'] and task['inputData']['enabled-notifications'] is not None:
+        mount_body["node"]["netconf-node-topology:enabled-notifications"] = task['inputData']['enabled-notifications']
+
     id_url = Template(odl_url_netconf_mount).substitute({"id": device_id})
 
     r = requests.put(id_url, data=json.dumps(mount_body), headers=add_uniconfig_tx_cookie(uniconfig_tx_id), auth=odl_credentials)
